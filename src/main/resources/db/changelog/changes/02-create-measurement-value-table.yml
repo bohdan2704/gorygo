@@ -1,0 +1,19 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-measurements-table
+      author: bohdan
+      changes:
+        - createTable:
+            tableName: measurement_values
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: naming
+                  type: nvarchar(10)
+                  constraints:
+                    nullable: false

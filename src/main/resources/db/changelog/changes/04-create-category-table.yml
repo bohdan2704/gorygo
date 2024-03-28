@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-category-table
+      author: bohdan
+      changes:
+        - createTable:
+            tableName: categories
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: nvarchar(100)
+                  constraints:
+                    nullable: false
+#              - column:
+#                  name: image_id
+#                  type: BIGINT
+#                  constraints:
+#                    nullable: false
+#                    foreignKeyName: fk_image_categories
+#                    references: images(id)
+              - column:
+                  name: upper_id
+                  type: BIGINT
+                  constraints:
+                    nullable: true
+                    foreignKeyName: fk_categories_upper
+                    references: categories(id)
+#              - column:
+#                  name: lower_id
+#                  type: BIGINT
+#                  constraints:
+#                    nullable: true
+#                    foreignKeyName: fk_categories_lower
+#                    references: categories(id)

@@ -1,0 +1,24 @@
+#databaseChangeLog:
+#  - changeSet:
+#      id: create-categories-bottom-table
+#      author: bohdan
+#      changes:
+#        - createTable:
+#            tableName: categories_bottom
+#            columns:
+#              - column:
+#                  name: bottom_id
+#                  type: BIGINT
+#                  constraints:
+#                    primaryKey: true
+#                    unique: true
+#                    nullable: false
+#                    foreignKeyName: FKkujo1fx9cfhnm3a2hgli5gkgb
+#                    references: categories(id)
+#              - column:
+#                  name: category_id
+#                  type: BIGINT
+#                  constraints:
+#                      nullable: false
+#                      foreignKeyName: FK7n1351xcsqv053gt1612pmq2y
+#                      references: categories(id)

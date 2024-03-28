@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-questions-responses-table
+      author: bohdan
+      changes:
+        - createTable:
+            tableName: questions_responses
+            columns:
+              - column:
+                  name: question_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_question
+                    references: questions(id)
+              - column:
+                  name: responses_id
+                  type: BIGINT
+                  constraints:
+                      nullable: false
+                      foreignKeyName: fk_response_to_question
+                      references: responses(id)

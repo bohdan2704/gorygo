@@ -1,0 +1,24 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-user-table
+      author: bohdan
+      changes:
+        - createTable:
+            tableName: users
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: name
+                  type: nvarchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: email
+                  type: nvarchar(150)
+                  constraints:
+                    nullable: false
