@@ -18,7 +18,7 @@ public class Question {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Size(max = StaticValues.LARGE_TEXT_SIZE)
+    @Size(max = StaticValues.BIG_TEXT_SIZE)
     private String text;
     @ManyToOne
     private User author;

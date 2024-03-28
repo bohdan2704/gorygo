@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Positive;
@@ -19,6 +21,7 @@ public class Response {
     private Long id;
     @Size(max = StaticValues.LARGE_TEXT_SIZE)
     private String text;
+    private LocalDateTime createdAt;
     @ManyToOne
     private User author;
 //    @OneToMany

@@ -14,12 +14,9 @@ databaseChangeLog:
                     primaryKey: true
               - column:
                   name: text
-                  type: nvarchar(500)
+                  type: nvarchar(2000)
                   constraints:
                     nullable: false
-              - column:
-                  name: stars
-                  type: INT
               - column:
                   name: author_id
                   type: BIGINT

@@ -7,7 +7,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 
-@Mapper(config = MapperConfig.class, uses = ImageMapper.class)
+@Mapper(config = MapperConfig.class)
 public interface CategoryMapper {
 //    @Mapping(target = "imageId", source = "image.id")
     @Mapping(target = "upperId", source = "upper.id")

@@ -6,11 +6,13 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @Table(name="users")
 public class User {
     @Id
@@ -21,4 +23,8 @@ public class User {
     private String name;
     @Pattern(regexp = StaticValues.EMAIL_PATTERN) // message = "{invalid.email}")
     private String email;
+
+    public User(Long id) {
+        this.id = id;
+    }
 }

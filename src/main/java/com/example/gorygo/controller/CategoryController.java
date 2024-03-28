@@ -20,17 +20,39 @@ public class CategoryController {
 
     @GetMapping
     public List<CategoryDto> getAllCategories(Pageable pageable) {
-        return categoryService.findAll(pageable).stream().map(categoryMapper::toDto).toList();
+        List<CategoryDto> allCategories = categoryService.findAll(pageable)
+                .stream()
+                .map(categoryMapper::toDto)
+                .toList();
+
+        // Finish initializing each category in a list above with a subcategory list
+        for (var category : allCategories) {
+            List<Category> subCategories = categoryService.getAllSubcategoriesOfCategoryById(category.getId());
+
+            // Map list of retrieved categories to list of their ids
+            List<Long> subCategoriesIds = subCategories
+                    .stream()
+                    .map(Category::getId)
+                    .toList();
+            category.setBottomIds(subCategoriesIds);
+        }
+        return allCategories;
     }
 
-    @GetMapping("/sub/{id}")
-    public List<CategoryDto> getAllSubcategories(@PathVariable Long id) {
-        return categoryService.getAllSubcategoriesOfCategoryById(id).stream().map(categoryMapper::toDto).toList();
-    }
+//    @GetMapping("/sub/{id}")
+//    public List<CategoryDto> getAllSubcategories(@PathVariable Long id) {
+//        return categoryService.getAllSubcategoriesOfCategoryById(id).stream().map(categoryMapper::toDto).toList();
+//    }
 
     @GetMapping(path = "/{id}")
     public CategoryDto getCategoryById(@PathVariable Long id) {
-        return categoryMapper.toDto(categoryService.findById(id));
+        CategoryDto dto = categoryMapper.toDto(categoryService.findById(id));
+
+        // Finish initialization of an object from DB with a list of subcategories
+        List<Category> subCategories = categoryService.getAllSubcategoriesOfCategoryById(id);
+        List<Long> subCategoriesIds = subCategories.stream().map(Category::getId).toList();
+        dto.setBottomIds(subCategoriesIds);
+        return dto;
     }
 
     @PostMapping

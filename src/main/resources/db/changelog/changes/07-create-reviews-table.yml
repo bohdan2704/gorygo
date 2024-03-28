@@ -14,7 +14,7 @@ databaseChangeLog:
                     primaryKey: true
               - column:
                   name: text
-                  type: nvarchar(500)
+                  type: nvarchar(5000)
                   constraints:
                     nullable: false
               - column:
