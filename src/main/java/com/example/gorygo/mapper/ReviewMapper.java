@@ -1,26 +1,28 @@
 package com.example.gorygo.mapper;
 
 import com.example.gorygo.dto.get.QuestionDto;
+import com.example.gorygo.dto.get.ReviewDto;
 import com.example.gorygo.dto.post.CreateQuestionDto;
+import com.example.gorygo.dto.post.CreateReviewDto;
 import com.example.gorygo.model.Question;
 import com.example.gorygo.model.Response;
+import com.example.gorygo.model.Review;
 import org.mapstruct.AfterMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Mapper(config = MapperConfig.class, uses = UserMapper.class)
-public interface QuestionMapper {
+public interface ReviewMapper {
     @Mapping(target = "responseIds", ignore = true)
     @Mapping(target = "authorId", source = "author.id")
-    QuestionDto toDto(Question question);
+    ReviewDto toDto(Review question);
 
     @AfterMapping
-    default void initIdsFromResponses(@MappingTarget QuestionDto dto,
-                                     Question model) {
+    default void initIdsFromResponses(@MappingTarget ReviewDto dto,
+                                     Review model) {
         List<Long> responseIds = model.getResponses()
                 .stream()
                 .map(Response::getId)
@@ -30,11 +32,11 @@ public interface QuestionMapper {
 
     @Mapping(target = "responses", ignore = true)
     @Mapping(target = "author", source = "authorId", qualifiedByName = "userFromId")
-    Question toModel(CreateQuestionDto createQuestionDto);
+    Review toModel(CreateReviewDto createReviewDto);
 
     @AfterMapping
-    default void initSubjectsFromIds(@MappingTarget Question model,
-                                     CreateQuestionDto createDto) {
+    default void initSubjectsFromIds(@MappingTarget Review model,
+                                     CreateReviewDto createDto) {
         List<Response> responseDummies = createDto.responseIds()
                 .stream()
                 .map(Response::new)
@@ -42,5 +44,5 @@ public interface QuestionMapper {
         model.setResponses(responseDummies);
     }
 
-    CreateQuestionDto fromDtoToCreateDto(QuestionDto dto);
+    CreateReviewDto fromDtoToCreateDto(ReviewDto dto);
 }

@@ -1,20 +1,22 @@
 package com.example.gorygo.service;
 
+import com.example.gorygo.dto.get.CategoryDto;
+import com.example.gorygo.dto.post.CreateCategoryDto;
 import com.example.gorygo.model.Category;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
 public interface CategoryService {
-    Category save(Category createCategoryDto);
+    CategoryDto save(CreateCategoryDto createCategoryDto);
 
-    Category findById(Long id);
+    CategoryDto findById(Long id);
 
-    List<Category> getAllSubcategoriesOfCategoryById(Long id);
+    List<CategoryDto> getAllSubcategoriesOfCategoryById(Long id);
 
-    List<Category> findAll(Pageable pageable);
+    List<CategoryDto> findAll(Pageable pageable);
 
-    Category updateById(Long id, Category createCategoryDto);
+    CategoryDto updateById(Long id, CreateCategoryDto createCategoryDto);
 
     void deleteById(Long id);
 }
