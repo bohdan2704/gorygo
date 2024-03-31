@@ -9,6 +9,8 @@ import com.example.gorygo.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +23,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserDto save(CreateUserDto user) {
         User toSave = userMapper.toModel(user);
+        toSave.setRegisteredAt(LocalDateTime.now());
         userRepository.save(toSave);
         return userMapper.toDto(toSave);
     }

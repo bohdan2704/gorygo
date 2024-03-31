@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-product-images-table
+      author: bohdan
+      changes:
+        - createTable:
+            tableName: products_images
+            columns:
+              - column:
+                  name: product_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_product_to_products_2
+                    references: products(id)
+              - column:
+                  name: images_id
+                  type: BIGINT
+                  constraints:
+                      nullable: false
+                      foreignKeyName: fk_image_to_images
+                      references: images(id)

@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@Table(name="product")
+@Table(name="products")
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,13 +25,16 @@ public class Product {
     @Size(max = 100)
     private String naming;
     @OneToMany
-    private List<MeasurementValue> size;
+    private List<MeasurementValue> sizes;
     @NotBlank
     @Size(max = 2000)
     private String description;
     @Positive
     private BigDecimal price;
-    @NotNull
+    @Positive
+    private BigDecimal priceEuro;
+    @Column(updatable = false)
+    @CreationTimestamp
     private LocalDateTime createdAt;
     @OneToMany
     private List<Image> images;

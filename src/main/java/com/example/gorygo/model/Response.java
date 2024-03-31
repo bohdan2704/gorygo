@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Positive;
+import org.hibernate.annotations.CreationTimestamp;
 
 @Entity
 @Getter
@@ -24,7 +25,8 @@ public class Response {
     private Long id;
     @Size(max = StaticValues.LARGE_TEXT_SIZE)
     private String text;
-    @NotNull
+    @Column(updatable = false)
+    @CreationTimestamp
     private LocalDateTime createdAt;
     @ManyToOne
     private User author;

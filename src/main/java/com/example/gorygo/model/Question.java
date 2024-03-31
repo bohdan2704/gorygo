@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@NoArgsConstructor
 @Table(name="questions")
 public class Question {
     @Id
@@ -23,14 +25,15 @@ public class Question {
     private Long id;
     @Size(max = StaticValues.BIG_TEXT_SIZE)
     private String text;
-    @NotNull
+    @Column(updatable = false)
+    @CreationTimestamp
     private LocalDateTime createdAt;
     @ManyToOne
     private User author;
     @OneToMany
     private List<Response> responses;
 
-//    public Question(Long id) {
-//        this.id = id;
-//    }
+    public Question(Long id) {
+        this.id = id;
+    }
 }

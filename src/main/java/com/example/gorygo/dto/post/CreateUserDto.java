@@ -10,7 +10,7 @@ public record CreateUserDto(
         @NotBlank
         @Size(max = StaticValues.SMALL_TEXT_SIZE)
         String name,
-        @NotNull
+        @NotBlank
         @Pattern(regexp = StaticValues.EMAIL_PATTERN)
         String email
 ) {}

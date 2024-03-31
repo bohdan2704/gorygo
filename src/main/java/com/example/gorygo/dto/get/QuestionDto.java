@@ -8,6 +8,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -15,6 +16,7 @@ import java.util.List;
 public class QuestionDto {
         private Long id;
         String text;
+        private LocalDateTime createdAt;
         Long authorId;
         private List<Long> responseIds;
 }

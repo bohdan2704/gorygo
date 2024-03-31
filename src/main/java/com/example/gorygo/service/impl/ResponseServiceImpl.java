@@ -17,7 +17,6 @@ public class ResponseServiceImpl implements ResponseService {
 
     @Override
     public Response save(Response response) {
-        response.setCreatedAt(LocalDateTime.now());
         return responseRepository.save(response);
     }
 

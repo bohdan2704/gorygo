@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class ReviewServiceImpl implements ReviewService {
     @Override
     public ReviewDto save(CreateReviewDto reviewDto) {
         Review model = reviewMapper.toModel(reviewDto);
+//        model.setCreatedAt(LocalDateTime.now());
         Review saved = reviewRepository.save(model);
         return reviewMapper.toDto(saved);
     }

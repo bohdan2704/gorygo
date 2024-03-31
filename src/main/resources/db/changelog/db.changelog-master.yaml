@@ -19,5 +19,13 @@ databaseChangeLog:
       file: db/changelog/changes/09-create-questions-table.yml
   - include:
       file: db/changelog/changes/10-create-questions-responses-table.yml
-#  - include:
-#      file: db/changelog/changes/
+  - include:
+      file: db/changelog/changes/11-create-products-table.yml
+  - include:
+      file: db/changelog/changes/12-create-products-measurement_values-table.yml
+  - include:
+      file: db/changelog/changes/13-create-products-images-table.yml
+  - include:
+      file: db/changelog/changes/14-create-products-questions-table.yml
+  - include:
+      file: db/changelog/changes/15-create-products-reviews-table.yml

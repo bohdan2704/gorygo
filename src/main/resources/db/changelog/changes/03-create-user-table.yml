@@ -18,6 +18,11 @@ databaseChangeLog:
                   constraints:
                     nullable: false
               - column:
+                  name: registered_at
+                  type: DATETIME
+                  constraints:
+                    nullable: false
+              - column:
                   name: email
                   type: nvarchar(150)
                   constraints:

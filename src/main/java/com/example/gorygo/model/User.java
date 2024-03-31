@@ -8,6 +8,9 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -21,6 +24,9 @@ public class User {
     @NotBlank
     @Size(max = StaticValues.SMALL_TEXT_SIZE)
     private String name;
+    @Column(updatable = false)
+    @CreationTimestamp
+    private LocalDateTime registeredAt;
     @Pattern(regexp = StaticValues.EMAIL_PATTERN) // message = "{invalid.email}")
     private String email;
 

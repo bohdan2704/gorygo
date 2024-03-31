@@ -10,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,6 +23,7 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public QuestionDto save(CreateQuestionDto question) {
         Question model = questionMapper.toModel(question);
+//        model.setCreatedAt(LocalDateTime.now());
         Question saved = questionRepository.save(model);
         return questionMapper.toDto(saved);
     }
@@ -29,10 +31,6 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public QuestionDto findById(Long id) {
         return questionRepository.findById(id).map(questionMapper::toDto).orElseThrow();
-    }
-
-    private Question findModelById(Long id) {
-        return questionRepository.findById(id).orElseThrow();
     }
 
     @Override

@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.NoSuchFileException;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import java.nio.file.Files;
@@ -28,16 +29,15 @@ public class ImageServiceImpl implements ImageService {
 
     @Override
     public Image save(MultipartFile file) throws IOException {
-        System.out.println(file.getOriginalFilename());
-        System.out.println(file.getName());
-        System.out.println(file.getContentType());
-        System.out.println(file.getResource());
-
+//        System.out.println(file.getOriginalFilename());
+//        System.out.println(file.getName());
+//        System.out.println(file.getContentType());
+//        System.out.println(file.getResource());
         Path fileNameAndPath = Paths.get(StaticValues.UPLOAD_IMG_DIRECTORY, file.getOriginalFilename());
         Files.write(fileNameAndPath, file.getBytes());
         Image image = new Image();
+//        image.setCreatedAt(LocalDateTime.now());
         image.setNaming(file.getOriginalFilename());
-        // URI location = URI.create("/images/" + file.getOriginalFilename());
         return imageRepository.save(image);
 
     }

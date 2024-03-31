@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-products-reviews-table
+      author: bohdan
+      changes:
+        - createTable:
+            tableName: products_reviews
+            columns:
+              - column:
+                  name: product_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_product_to_products
+                    references: products(id)
+              - column:
+                  name: reviews_id
+                  type: BIGINT
+                  constraints:
+                      nullable: false
+                      foreignKeyName: fk_review_to_reviews
+                      references: reviews(id)

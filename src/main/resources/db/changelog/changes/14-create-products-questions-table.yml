@@ -1,0 +1,22 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-product-questions-table
+      author: bohdan
+      changes:
+        - createTable:
+            tableName: products_questions
+            columns:
+              - column:
+                  name: product_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_product_to_products_3
+                    references: products(id)
+              - column:
+                  name: questions_id
+                  type: BIGINT
+                  constraints:
+                      nullable: false
+                      foreignKeyName: fk_question_to_questions
+                      references: questions(id)
