@@ -2,6 +2,7 @@ package com.example.gorygo.service.impl;
 
 import com.example.gorygo.info.StaticValues;
 import com.example.gorygo.model.Image;
+import com.example.gorygo.model.MeasurementValue;
 import com.example.gorygo.repository.ImageRepository;
 import com.example.gorygo.service.ImageService;
 import lombok.RequiredArgsConstructor;
@@ -43,6 +44,11 @@ public class ImageServiceImpl implements ImageService {
     }
 
     @Override
+    public Image findById(Long id) {
+        return imageRepository.findById(id).orElseThrow();
+    }
+
+    @Override
     public Image findByName(String name) {
         return imageRepository.findByNaming(name);
     }
@@ -67,5 +73,10 @@ public class ImageServiceImpl implements ImageService {
     @Override
     public void deleteById(Long id) {
         imageRepository.deleteById(id);
+    }
+
+    @Override
+    public List<Image> getAllImagesByIds(List<Long> list) {
+        return imageRepository.findAllById(list);
     }
 }

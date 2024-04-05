@@ -13,6 +13,8 @@ public interface MeasurementValueService {
 
     List<MeasurementValue> findAll(Pageable pageable);
 
+    List<MeasurementValue> getAllMeasurementValuesByIds(List<Long> id);
+
     MeasurementValue updateById(Long id, MeasurementValue createBookDto);
 
     void deleteById(Long id);

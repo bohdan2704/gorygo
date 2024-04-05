@@ -69,4 +69,9 @@ public class ReviewServiceImpl implements ReviewService {
     public void deleteById(Long id) {
         reviewRepository.deleteById(id);
     }
+
+    @Override
+    public List<ReviewDto> findAllByIds(List<Long> list) {
+        return reviewRepository.findAllById(list).stream().map(reviewMapper::toDto).toList();
+    }
 }

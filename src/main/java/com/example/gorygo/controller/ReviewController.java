@@ -17,6 +17,8 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -33,6 +35,11 @@ public class ReviewController {
     @GetMapping(path = "/{id}")
     public ReviewDto getQuestionById(@PathVariable Long id) {
         return reviewService.findById(id);
+    }
+
+    @GetMapping(path = "/list/{ids}")
+    public List<ReviewDto> getAllReviewsByIds(@PathVariable Long[] ids) {
+        return reviewService.findAllByIds(Arrays.stream(ids).toList());
     }
 
     @PostMapping

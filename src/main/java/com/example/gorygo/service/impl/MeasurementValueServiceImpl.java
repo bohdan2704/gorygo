@@ -29,6 +29,11 @@ public class MeasurementValueServiceImpl implements MeasurementValueService {
     }
 
     @Override
+    public List<MeasurementValue> getAllMeasurementValuesByIds(List<Long> ids) {
+        return measurementValueRepository.findAllById(ids);
+    }
+
+    @Override
     public MeasurementValue updateById(Long id, MeasurementValue measurementValue) {
         measurementValue.setId(id);
         return measurementValueRepository.save(measurementValue);

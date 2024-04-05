@@ -12,6 +12,8 @@ public interface CategoryService {
 
     CategoryDto findById(Long id);
 
+    List<CategoryDto> getCategoryChainById(Long id);
+
     List<CategoryDto> getAllSubcategoriesOfCategoryById(Long id);
 
     List<CategoryDto> findAll(Pageable pageable);

@@ -20,4 +20,6 @@ public interface ReviewService {
     ReviewDto updateQuestionAddResponse(Long questionId, Long responseId);
 
     void deleteById(Long id);
+
+    List<ReviewDto> findAllByIds(List<Long> list);
 }

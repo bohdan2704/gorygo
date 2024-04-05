@@ -8,8 +8,12 @@ import com.example.gorygo.repository.CategoryRepository;
 import com.example.gorygo.service.CategoryService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.mapping.Collection;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -38,6 +42,18 @@ public class CategoryServiceImpl implements CategoryService {
                 .toList();
         categoryDto.setBottomIds(subCategoriesIds);
         return categoryDto;
+    }
+
+    @Override
+    public List<CategoryDto> getCategoryChainById(Long id) {
+        List<CategoryDto> list = new ArrayList<>();
+        do {
+            CategoryDto category = findById(id);
+            list.add(category);
+            id = category.getUpperId();
+        } while(id != null);
+        Collections.reverse(list);
+        return list;
     }
 
     @Override

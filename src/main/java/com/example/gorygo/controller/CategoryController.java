@@ -30,6 +30,11 @@ public class CategoryController {
         return categoryService.findById(id);
     }
 
+    @GetMapping(path = "/chain/{id}")
+    public List<CategoryDto> getCategoryChainById(@PathVariable Long id) {
+        return categoryService.getCategoryChainById(id);
+    }
+
     @PostMapping
     public CategoryDto createCategory(@RequestBody @Valid CreateCategoryDto category) {
         return categoryService.save(category);

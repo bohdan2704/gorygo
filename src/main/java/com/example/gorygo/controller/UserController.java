@@ -4,6 +4,7 @@ import com.example.gorygo.dto.get.UserDto;
 import com.example.gorygo.dto.post.CreateUserDto;
 import com.example.gorygo.model.User;
 import com.example.gorygo.service.UserService;
+import com.example.gorygo.service.impl.UserServiceImpl;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
