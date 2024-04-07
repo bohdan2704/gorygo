@@ -1,6 +1,7 @@
 package com.example.gorygo.service;
 
 import com.example.gorygo.dto.get.QuestionDto;
+import com.example.gorygo.dto.get.ReviewDto;
 import com.example.gorygo.dto.post.CreateQuestionDto;
 import org.springframework.data.domain.Pageable;
 
@@ -18,4 +19,6 @@ public interface QuestionService {
     QuestionDto updateQuestionAddResponse(Long questionId, Long responseId);
 
     void deleteById(Long id);
+
+    List<QuestionDto> findAllByIds(List<Long> list);
 }

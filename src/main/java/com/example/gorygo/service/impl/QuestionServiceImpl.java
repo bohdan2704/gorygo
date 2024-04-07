@@ -1,6 +1,7 @@
 package com.example.gorygo.service.impl;
 
 import com.example.gorygo.dto.get.QuestionDto;
+import com.example.gorygo.dto.get.ReviewDto;
 import com.example.gorygo.dto.post.CreateQuestionDto;
 import com.example.gorygo.mapper.QuestionMapper;
 import com.example.gorygo.model.Question;
@@ -60,5 +61,10 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public void deleteById(Long id) {
         questionRepository.deleteById(id);
+    }
+
+    @Override
+    public List<QuestionDto> findAllByIds(List<Long> list) {
+        return questionRepository.findAllById(list).stream().map(questionMapper::toDto).toList();
     }
 }

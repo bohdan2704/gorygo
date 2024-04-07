@@ -2,6 +2,7 @@ package com.example.gorygo.controller;
 
 import com.example.gorygo.dto.get.QuestionDto;
 import com.example.gorygo.dto.get.ResponseDto;
+import com.example.gorygo.dto.get.ReviewDto;
 import com.example.gorygo.dto.post.CreateQuestionDto;
 import com.example.gorygo.dto.post.CreateResponseDto;
 import com.example.gorygo.mapper.QuestionMapper;
@@ -15,6 +16,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -31,6 +33,11 @@ public class QuestionController {
     @GetMapping(path = "/{id}")
     public QuestionDto getQuestionById(@PathVariable Long id) {
         return questionService.findById(id);
+    }
+
+    @GetMapping(path = "/list/{ids}")
+    public List<QuestionDto> getAllReviewsByIds(@PathVariable Long[] ids) {
+        return questionService.findAllByIds(Arrays.stream(ids).toList());
     }
 
     @PostMapping
